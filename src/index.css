@@ -1,68 +1,174 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import "tailwindcss";
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+    box-sizing: border-box;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
+/* body {
+    margin: 0;
+    background: linear-gradient(to right, #e0f7fa, #80deea, #0fe3ff, #51c0f3);
+
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: gradientMotion 15s ease infinite;
+} */
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+    margin: 0;
+    height: 100vh;
+    background-attachment: fixed;
+
+    background-color: #c4ccbb;
+
+    /* background: linear-gradient(-45deg, #0288d1, #30abbb, #29b6f6, #0288d1); */
+    background-size: 400% 400%;
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+@keyframes gradientMotion {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.nav {
+    background: #dcd7c9;
+    /* background-image: url(./assets/wukong.jpg); */
+
+    /* background: linear-gradient(to right, #e0f7fa, #80deea, #0fe3ff, #51c0f3); */
+    margin: 0;
+
+    color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    gap: 2 rem;
+    padding: 0;
+    font-size: large;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.site-title {
+    font-size: 2rem;
+    margin-left: 25px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.moto {
+    align-content: center;
+    margin-left: 50px;
+}
+
+.nav ul {
+    padding: 0;
+    margin: 0;
+    /* margin-right: 50px; */
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    font-size: 1.25rem;
+}
+
+.nav a {
+    color: inherit;
+    /*get rid of underline*/
+    text-decoration: none;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0.3rem;
+}
+
+.nav li.active {
+    text-decoration: underline;
+}
+
+.nav li:hover {
+    text-decoration: underline;
+    /*font-size: large;*/
+}
+
+/* hero-stuff */
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem;
+    height: 100vh;
+    background-color: #c4ccbb;
+}
+
+.hero-background {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* background-image: url(./assets/cloud.png); */
+    /* background-color: #8e9e7e; */
+    background-color: #dcd7c9;
+    border-radius: 50%;
+}
+
+/* .hero-background img {
+    max-width: 20%;
+    max-height: 50%;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    margin: 2rem;
+    border-radius: 40%;
+} */
+
+.hero-box {
+    flex: 1;
+    padding: 2rem;
+    text-align: center;
+}
+
+.hero-box h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.hero-box p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.cta-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    background-color: #0077ff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+    background-color: #005fcc;
+}
+
+@media (max-width: 768px) {
+    .hero-section {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .hero-image img {
+        max-width: 60%;
+    }
+
+    .hero-text {
+        padding: 1rem;
+    }
 }

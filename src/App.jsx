@@ -1,35 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import NavBar from "./components/NavBar";
+import cloudImg from "../src/assets/cloud.png";
+import portfolioImage from "../src/assets/avatar.jpg";
+
+// import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+    return (
+        <div className="portfolio-layout">
+            <NavBar />
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+            {/* Welcome section */}
+            <section>
+                <div className="hero-section">
+                    {/* <img src={portfolioImage} alt="hero-avatar" /> */}
+                    <div className="hero-background">
+                        <div className="hero-box">
+                            <h1>Welcome to my portfolio</h1>
+                            <p>
+                                My name is Eric Pham, a recent graduate from
+                                Seattle University with a degree in computer
+                                science. Welcome to my portfolio website where I
+                                showcase my passion for coding and building
+                                innovative software solutions.
+                            </p>
+                            <button className="cta-button">
+                                View My Projects
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            {/* About me section */}
+            <section>
+                <div>Hello i am about</div>
+            </section>
+
+            {/* My projects */}
+        </div>
+    );
 }
 
-export default App
+export default App;
+{
+    /* 
+<header> // for the welcome section
+<main>   // for your main content
+<aside>  // if you add a sidebar later
+<footer> // for contact info or links 
+*/
+}

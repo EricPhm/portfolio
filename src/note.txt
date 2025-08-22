@@ -1,0 +1,18 @@
+React Router components like <Link> need to be rendered inside a <BrowserRouter>
+so wrap the <App /> inside the <BrowserRouter> in main.jsx
+
+
+
+
+
+
+{/* big strip and image, detail over it */}
+                <div className="strip-box">
+                    <img src={portfolioImage} alt="profile photo" />
+                    {/* white rectangle to write detail */}
+                    <div className="detail-box">WELCOME TO MY PORTFOLIO</div>
+                </div>
+
+
+
+npm install tailwindcss @tailwindcss/vite
