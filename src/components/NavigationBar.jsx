@@ -9,17 +9,26 @@ const navItems = [
     { name: "Skills", href: "#skills" },
     { name: "Projects", href: "#projects" },
     { name: "Contact", href: "#contact" },
-    { component: <ThemeToggle key="theme-toggle" /> }, // Add ThemeToggle here
 ];
 
 export const NavigationBar = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+    // If menubtn is open then cant scroll
     useEffect(() => {
-        const handleScroll = () => setIsScrolled(window.screenY > 10);
+        if (isMenuOpen) {
+            document.body.classList.add("overflow-hidden");
+        } else {
+            document.body.classList.remove("overflow-hidden");
+        }
+    }, [isMenuOpen]);
+
+    useEffect(() => {
+        const handleScroll = () => setIsScrolled(window.scrollY > 10);
 
         window.addEventListener("scroll", handleScroll);
+
         return () => window.removeEventListener("scroll", handleScroll);
     });
     return (
@@ -47,19 +56,16 @@ export const NavigationBar = () => {
 
                 {/* desktop nav */}
                 <div className="hidden md:flex space-x-8">
-                    {navItems.map((item, key) =>
-                        item.component ? (
-                            item.component
-                        ) : (
-                            <a
-                                key={key}
-                                href={item.href}
-                                className="text-foreground/80 hover:text-primary transition-colors duration-300"
-                            >
-                                {item.name}
-                            </a>
-                        )
-                    )}
+                    {navItems.map((item, key) => (
+                        <a
+                            key={key}
+                            href={item.href}
+                            className="text-foreground/80 hover:text-primary transition-colors duration-300"
+                        >
+                            {item.name}
+                        </a>
+                    ))}
+                    <ThemeToggle />
                 </div>
 
                 {/* menu btn */}
@@ -78,7 +84,6 @@ export const NavigationBar = () => {
                         isMenuOpen
                             ? "opacity-100 pointer-events-auto"
                             : "opacity-0 pointer-events-none"
-                        // if menu open -> show menu
                     )}
                 >
                     <div className="flex flex-col space-y-8 text-xl">
