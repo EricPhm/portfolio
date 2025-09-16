@@ -1,5 +1,4 @@
 import React from "react";
-import { ThemeToggle } from "../components/ThemeToggle";
 import { StarBackground } from "../components/StarBackground";
 import { NavigationBar } from "../components/Navigationbar";
 import { HeroSection } from "../components/HeroSection";
@@ -31,5 +30,3 @@ export const Home = () => {
         </div>
     );
 };
-
-// export default Home;

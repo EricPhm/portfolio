@@ -1,10 +1,9 @@
 import { Instagram, Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
 import { useState } from "react";
 import { cn } from "../lib/utils";
-import { useToast } from "../hooks/use-toast";
+import { toast } from "react-hot-toast";
 
 export const ContactSection = () => {
-    const { toast } = useToast();
     const [isSending, setIsSending] = useState(false);
     const handleSubmit = (e) => {
         // not refresh the website
@@ -13,11 +12,9 @@ export const ContactSection = () => {
         setIsSending(true);
 
         setTimeout(() => {
-            toast({
-                title: "Message sent!",
-                description:
-                    "Thank you for your message. I'll get back to you soon!",
-            });
+            toast.success(
+                `Thank you for your message.\nI'll get back to you soon!`
+            );
             setIsSending(false);
         }, 1500);
     };
