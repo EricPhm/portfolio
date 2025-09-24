@@ -18,7 +18,7 @@ export const Home = () => {
             {/* NavBar */}
             <NavigationBar />
             {/* Main Content */}
-            <main>
+            <main className="">
                 <HeroSection />
                 <About />
                 <SkillsSection />

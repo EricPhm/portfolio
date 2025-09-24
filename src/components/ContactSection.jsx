@@ -2,21 +2,41 @@ import { Instagram, Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
 import { useState } from "react";
 import { cn } from "../lib/utils";
 import { toast } from "react-hot-toast";
+import emailjs from "emailjs-com";
 
 export const ContactSection = () => {
     const [isSending, setIsSending] = useState(false);
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        message: "",
+    });
+
+    const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    console.log("SERVICE_ID:", SERVICE_ID);
+
     const handleSubmit = (e) => {
         // not refresh the website
         e.preventDefault();
 
         setIsSending(true);
 
-        setTimeout(() => {
-            toast.success(
-                `Thank you for your message.\nI'll get back to you soon!`
+        // send email through emailjs
+        emailjs
+            .sendForm(SERVICE_ID, TEMPLATE_ID, e.target, PUBLIC_KEY)
+            .then((result) => {
+                setFormData({ name: "", email: "", message: "" });
+                toast.success(
+                    `Thank you for your message.\nI'll get back to you soon!`
+                );
+                setIsSending(false);
+            })
+            .catch(() =>
+                toast.error("Ooops, something went wrong, try again!")
             );
-            setIsSending(false);
-        }, 1500);
     };
 
     return (
@@ -30,7 +50,8 @@ export const ContactSection = () => {
                     reach out. I'm always open to discussing new opportunities
                 </p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-                    <div className="space-y-8 ">
+                    {/* Contact Information */}
+                    <div className="space-y-8">
                         <h3 className="text-2xl font-semibold mb-6">
                             {" "}
                             Contact Information
@@ -94,15 +115,12 @@ export const ContactSection = () => {
                     </div>
 
                     {/* Contact Form */}
-                    <div
-                        className="bg-card p-8 rounded-lg shadow-xs"
-                        onSubmit={handleSubmit}
-                    >
+                    <div className="bg-card p-8 rounded-lg shadow-xs">
                         <h3 className="text-2xl font-semibold mb-6">
                             {" "}
                             Send a Message
                         </h3>
-                        <form className="space-y-6">
+                        <form className="space-y-6" onSubmit={handleSubmit}>
                             <div>
                                 <label
                                     htmlFor="name"
@@ -118,6 +136,13 @@ export const ContactSection = () => {
                                     required
                                     className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
                                     placeholder="Name..."
+                                    value={formData.name}
+                                    onChange={(e) =>
+                                        setFormData({
+                                            ...formData,
+                                            name: e.target.value,
+                                        })
+                                    }
                                 />
                             </div>
                             <div>
@@ -135,6 +160,13 @@ export const ContactSection = () => {
                                     required
                                     className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary"
                                     placeholder="email@gmail.com..."
+                                    value={formData.email}
+                                    onChange={(e) =>
+                                        setFormData({
+                                            ...formData,
+                                            email: e.target.value,
+                                        })
+                                    }
                                 />
                             </div>
                             <div>
@@ -151,6 +183,13 @@ export const ContactSection = () => {
                                     required
                                     className="w-full px-4 py-3 rounded-md border border-input bg-background focus:outline-hidden focus:ring-2 focus:ring-primary resize-none"
                                     placeholder="Hi, I'd like to talk about..."
+                                    value={formData.message}
+                                    onChange={(e) =>
+                                        setFormData({
+                                            ...formData,
+                                            message: e.target.value,
+                                        })
+                                    }
                                 />
                             </div>
                             <button

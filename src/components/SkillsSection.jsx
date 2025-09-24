@@ -24,7 +24,7 @@ export const SkillsSection = () => {
 
                 {/* box */}
                 <div
-                    className="skill-box"
+                    className="skill-box pt-4"
                     style={{
                         "--width": "100px",
                         "--height": "100px",

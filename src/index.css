@@ -176,7 +176,7 @@
     } */
 
     .skill-box {
-        @apply w-full h-[90vh] relative flex items-start justify-center;
+        @apply w-full pb-19 relative flex items-start justify-center;
     }
 
     /* slider wrapper */
